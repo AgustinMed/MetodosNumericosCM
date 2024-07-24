@@ -1,15 +1,13 @@
-import sympy as sp
+import sympy as smp
 
-def punto_fijo(g, aprox, tol=1e-6, max_iter=100):
-    x = sp.symbols('x')
-    g_expr = sp.sympify(g)
+def punto_fijo(f, aprox, tol=1e-6, max_iter=1000):
+    x = smp.symbols('x')
+    f_expr = smp.sympify(f)
     
     for i in range(max_iter):
-        p = g_expr.subs(x, aprox)
-        
+        p = f_expr.evalf(subs={x: aprox})
         if abs(p - aprox) < tol:
             return p.evalf()
-        
         aprox = p
     
     raise ValueError("El método no convergió en el número máximo de iteraciones")
