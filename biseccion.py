@@ -12,7 +12,7 @@ def bisection_method(f_expr, a, b):
     
     while i < ITERACIONES:
         # Calculamos el punto medio p_n
-        p_n = (a + b) / 2
+        p_n = a + (b - a) / 2
         fp = round(f_expr.evalf(subs={x: p_n}), 15)
         
         # Si se encontró la raiz (o cercana) devolver p
@@ -30,18 +30,18 @@ def bisection_method(f_expr, a, b):
     
     return None
 
-# Ingreso de datos por terminal
-expr_input = input("Introduce la función f(x): ")
-f_expr = sp.sympify(expr_input)
+if __name__ == "__main__":
+    expr_input = input("Introduce la función f(x): ")
+    f_expr = sp.sympify(expr_input)
 
-a = float(input("Introduce el valor inicial a: "))
-b = float(input("Introduce el valor inicial b: "))
+    a = float(input("Introduce el valor inicial a: "))
+    b = float(input("Introduce el valor inicial b: "))
 
-# Definimos la variable simbólica
-x = sp.symbols('x')
+    #Defino x
+    x = sp.symbols('x')
 
-# Ejecutamos el método de la bisección
-root = bisection_method(f_expr, a, b)
+    #Llamo al método de bisección
+    root = bisection_method(f_expr, a, b)
 
-# Mostramos el resultado de la raíz
-print(f"La raíz aproximada es: {root}")
+    #Resultado de la raíz
+    print(f"La raíz aproximada es: {root}")
